@@ -25,3 +25,31 @@ function Person(name, age) {
 }
 
 const elena = new Person('Elena', 20)
+
+// ======== Явный
+function logThis() {
+    console.log(this);
+}
+
+const obj = {num: 42}
+logThis.apply(obj)
+logThis.call(obj)
+logThis.bind(obj)()
+
+// ========= Неявный
+const animal = {
+    legs: 4,
+    logThis: function() {
+        console.log(this);
+    }
+}
+
+animal.logThis()
+
+function Cat(color) {
+    this.color = color
+    console.log('This', this);
+    ( () => console.log('Arrow this', this))()
+}
+
+new Cat("red")
